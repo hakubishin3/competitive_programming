@@ -62,3 +62,53 @@ for i in range(N):
 
 print(res)
 
+# ==========================
+# === E - Bomber
+# ==========================
+"""
+問題文
+H×W マスの二次元グリッドがあります。この中には M 個の爆破対象があります。 
+i 個目の爆破対象の位置は (hi,wi)です。
+高橋君は 1 つのマスを選び、そのマスに爆弾を設置し、起爆します。爆弾と同じ行または同じ列に存在する爆破対象が爆破されます。
+爆破対象が存在するマスに爆弾を設置することも出来ます。高橋君は、爆破する爆破対象の数を最大化しようとしています。最大でいくつの爆破対象を爆破出来るか答えてください。
+
+制約
+入力は全て整数
+1≤H,W≤3×10**5
+1≤M≤min(H×W,3×10**5)
+1≤hi≤H
+1≤wi≤W
+(hi,wi)≠(hj,wj)(i≠j)
+"""
+import sys
+input = sys.stdin.readline
+ 
+H, W, M = map(int, input().split())
+Hsum = [0] * H
+Wsum = [0] * W
+hw = set()
+for m in range(M):
+  h, w = map(lambda x: int(x) - 1, input().split())
+  Hsum[h] += 1
+  Wsum[w] += 1
+  hw.add((h, w))
+
+mh = max(Hsum)
+mw = max(Wsum)
+hidx = [i for i, _ in enumerate(Hsum) if _ == mh]
+widx = [i for i, _ in enumerate(Wsum) if _ == mw]
+
+if len(hidx) * len(widx) > M:
+  print(mh + mw)
+else:
+  fi_flg = False
+  for h in hidx:
+    for w in widx:
+      if (h, w) not in hw:
+        print(mh + mw)
+        fi_flg = True
+        break
+    if fi_flg:
+      break
+  if fi_flg is False:
+    print(mh + mw - 1)
