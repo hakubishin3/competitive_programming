@@ -47,4 +47,17 @@ from numpy.random import random
 a = [[random(), random(), random()] for i in range(10**6)]
 a.sort(key=itemgetter(1))
 
+# ==========================
+# === スタック・キュー
+# ==========================
+s = []
+s.append(1)   # [] -> [1]
+s.append(2)   # [1] -> [1, 2]
+s.pop()       # [1, 2] -> [1]
+s.pop()       # [1] -> []
 
+q = []
+q.append(1)   # [] -> [1]
+q.append(2)   # [1] -> [1, 2]
+q.pop(0)      # [1, 2] -> [2]
+q.pop(0)      # [2] -> []
