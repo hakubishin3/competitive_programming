@@ -20,7 +20,6 @@ L = [int(input()) for i in range(N)]
 # 整数 (縦 H 横 W の行列)
 S = [list(map(int, input().split())) for i in range(H)]
 
-
 # ==========================
 # === 標準出力
 # ==========================
@@ -35,10 +34,17 @@ print(*arr, sep="\n")
 # 最後に改行を入れない出力
 print("あああ", end="")
 
-
 # ==========================
 # === 処理の終了
 # ==========================
 exit()
+
+# ==========================
+# === ソート
+# ==========================
+from operator import itemgetter
+from numpy.random import random
+a = [[random(), random(), random()] for i in range(10**6)]
+a.sort(key=itemgetter(1))
 
 
