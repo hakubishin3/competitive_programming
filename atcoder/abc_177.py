@@ -137,3 +137,52 @@ for _ in range(m):
   a, b = [int(i) - 1 for i in input().split()]
   uf.merge(a, b)
 print(max(uf.count))
+
+# ==========================
+# === E - Coprime
+# ==========================
+"""
+問題文
+N 個の整数があります。i 番目の数は Ai です。
+「全ての 1≤i<j≤N について、GCD(Ai,Aj)=1」が成り立つとき、{Ai} は pairwise coprime であるといいます。
+{Ai} が pairwise coprime ではなく、かつ、GCD(A1,…,AN)=1 であるとき、{Ai} は setwise coprime であるといいます。
+{Ai} が pairwise coprime、setwise coprime、そのどちらでもない、のいずれであるか判定してください。
+ただし GCD(…) は最大公約数を表します。
+
+制約
+2≤N≤10**6
+1≤Ai≤10**6
+"""
+import sys
+from math import gcd
+input = sys.stdin.readline
+N = int(input())
+A = list(map(int, input().split()))
+
+g = 0
+for a in A:
+  g = gcd(g, a)
+if g > 1:
+  print("not coprime")
+  exit()
+
+def factorize(n):
+    d = set()
+    m = 2
+    while m * m <= n:
+        while n % m == 0:
+            n //= m
+            d.add(m)
+        m += 1
+    if n > 1:
+        d.add(n)
+    return d
+
+st = set()
+for a in A:
+    fac = factorize(a)
+    if fac.intersection(st):
+        print('setwise coprime')
+        exit()
+    st.update(fac)
+print('pairwise coprime')
