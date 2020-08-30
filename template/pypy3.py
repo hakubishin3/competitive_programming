@@ -3,7 +3,7 @@
 # ==========================
 # input()を早くする
 import sys
-input = sys.stdin.readline
+input = sys.stdin.readline   # 改行が削除されないので文字列を受け取る時には注意する
 
 # 整数 1 つ
 N = int(input())
