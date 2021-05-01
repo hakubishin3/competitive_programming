@@ -70,3 +70,13 @@ d.add(1)   # {} -> {1}
 d.update({2, 3})   # {1} -> {1, 2, 3}, d |= {2, 3} は等価
 d.intersection_update({1, 2})   # {1, 2, 3} -> {1, 2}, d &= {1, 2}は等価
 
+# ==========================
+# === Deque
+# ==========================
+from collections import deque
+s = deque()       # deque([])
+s.appendleft(1)   # deque([1])
+s.appendleft(2)   # deque([2, 1])
+s.popleft()       # deque([1])
+s.append(3)       # deque([1, 3])
+s.pop()           # deque([1])
