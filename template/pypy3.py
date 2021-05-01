@@ -48,7 +48,7 @@ a = [[random(), random(), random()] for i in range(10**6)]
 a.sort(key=itemgetter(1))
 
 # ==========================
-# === スタック・キュー
+# === List
 # ==========================
 s = []
 s.append(1)   # [] -> [1]
